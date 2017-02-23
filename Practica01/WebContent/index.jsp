@@ -13,13 +13,14 @@
 	<body>
 		<center>
 			<h1> TEST SERVLET: GET METHOD </h1>
-			<form action="http://localhost:8080/Practica01" method=get>
+			<form action="http://localhost:8080/Practica01/Web" method=get>
 				Name: <input type=text name=name required>
 				Contrasena: <input type=text name=key required>
 				<input type=submit value=Send>
 			</form>
 			<br>
-			<form action="http://localhost:8080/Practica01" method=post>
+			<h1> TEST SERVLET: POST METHOD </
+			<form action="http://localhost:8080/Practica01/Web" method=post>
 				Name: <input type=text name=name required>
 				Contrasena: <input type=text name=key required>
 				<input type=submit value=Send>
