@@ -4,11 +4,12 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/Web")
-public class Web {
+public class Web extends HttpServlet {
 	//Constantes.
 		final String [] web = {"/index.jsp","/user.jsp","/admin.jsp"};
 		final String [] admin = {"Andres","Pablo"};
