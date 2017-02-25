@@ -31,10 +31,10 @@ public class Registro extends HttpServlet{
 			HttpSession session = request.getSession(true);
 			
 			// Se leen los parámetros
-			String nombre = request.getParameter("nombre");
+			String nombre = request.getParameter("name");
 			String apellidos = request.getParameter("apellidos");
 			String email = request.getParameter("email");
-			String key = request.getParameter("clave");
+			String key = request.getParameter("key");
 			
 			// Se crea el objeto usuario
 			Usuario usuario = new Usuario (nombre,apellidos,email,key);
@@ -48,6 +48,9 @@ public class Registro extends HttpServlet{
 			
 			//Determinamos la expiración de la sesión a 60 minunutos
 			session.setMaxInactiveInterval(30*60);
+			
+			//Añadimos el objeto usuario al jsp.
+			request.setAttribute("usuario", usuario);
 		}
 		//Mostramos el jsp de bienvenida o la de registro.
 		getServletContext().getRequestDispatcher(url).forward(request, response);

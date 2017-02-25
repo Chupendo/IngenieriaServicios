@@ -2,10 +2,10 @@ package tienda;
 
 public class Usuario {
 	//Atributos.
-	private String nombre;
-	private String apellidos;
-	private String email;
-	private String clave;
+	String nombre;
+	String apellidos;
+	String email;
+	String clave;
 	
 	//Constuctores
 	public Usuario ()
