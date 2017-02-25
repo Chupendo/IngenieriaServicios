@@ -1,12 +1,14 @@
 package tienda;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/Web")
 public class Web extends HttpServlet {
@@ -28,19 +30,19 @@ public class Web extends HttpServlet {
 			
 			if(request.getParameter("name")==null || request.getParameter("key")==null )
 			{//Se a cargado la web por primera vez.
-				url=web[0];
+				url=web[0]; //Web de inicio de sesion.
 				System.out.println(url);
 			}
 			else
 			{
 				if (id_user.equals(admin[0]) && id_key.equals(admin[1]))
 				{//Los datos introducidos coincide con el administrado.
-					url=web[2];
+					url=web[2]; //Web para la identificación.
 					System.out.println(url);
 				}
 				else
 				{//Los datos introducidos son del usuario.
-					url=web[1]; 
+					url=web[1]; //Web para que el usuario se registre.
 					System.out.println(url);
 				}
 			}
