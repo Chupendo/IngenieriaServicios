@@ -1,6 +1,7 @@
 package tienda;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -27,7 +28,7 @@ public class Registro extends HttpServlet{
 		else
 		{
 			url="/bienvenido.jsp";
-			//Creamos una sesion.
+			//Devuelve la sesion, y si no existe, la crea.
 			HttpSession session = request.getSession(true);
 			
 			// Se leen los parámetros
@@ -35,10 +36,11 @@ public class Registro extends HttpServlet{
 			String apellidos = request.getParameter("apellidos");
 			String email = request.getParameter("email");
 			String key = request.getParameter("key");
-			
+			Producto carrito = new Producto();
+			ArrayList lista = new ArrayList();//Lista inicial, vacía.
 			// Se crea el objeto usuario
-			Usuario usuario = new Usuario (nombre,apellidos,email,key);
-			
+			Usuario usuario = new Usuario (nombre,apellidos,email,key,lista);
+
 			//A continuación guardamos en la sesión el objeto usuraio.		
 			session.setAttribute ("usuario",usuario);
 			

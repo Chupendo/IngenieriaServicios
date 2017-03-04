@@ -1,27 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="en">
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Plantilla b&aacute;sica de Bootstrap</title>
+		<link rel="stylesheet" type="text/css" href="extra/estilos.css"/>
+		<!-- CSS de Bootstrap -->
+		<link href="extra/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 		
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Identificación</title>
-		
+		<!-- Para que funcione bien en los móviles -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
-	
 	<body>
-		<center>
-			<h1> Identifiación: POST METHOD </h1>
-			<form action="http://localhost:8080/Practica01/Web" method=post>
-				E-mail: <input type=email name=name required>
-				Contraseña: <input type=text name=key required>
-				<input type=submit value=Send>
-			</form>
-			<br>
-			<h1> Registrate como usuario: Get METHOD </h1>
-			<form action="http://localhost:8080/Practica01/Registro" method=get>
-				<input type=submit value=Registro>
-			</form>
-		</center>
+		<header class="container">
+			<section class="row">
+				<div class="col-xs-12 cols-sm-9 col-md-9 col-lg-9" id="nombreWeb">
+					<h1>Carrito.</h1>
+				</div>
+				
+				<!-- SECCIÓN PARA LA INDENTIFICACIÓN DE USUARIOS -->
+				<div class="col-xs-12 cols-sm-3 col-md-3 col-lg-3" id="identifica">
+					<form method="post" action="http://localhost:8080/Practica01/Web">
+
+								<div class="input-group">
+									<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+									<input class="form-control" placeholder="Username" type="text" name="name" id="search_bar" required>
+								</div>
+								
+								<div class="form-group">
+								   <label class="sr-only" for="inputPassword">Password</label>
+								   <input type="password"  class="form-control"  placeholder="Password" name="key" required>
+								</div>
+																
+								<div class="checkbox">
+									<label><input type="checkbox" name="recordar"/> Recuerdame</label>
+								</div>
+							
+								<!--Botones de acceso.-->
+								<div class="form-group">
+									<button type="submit" class="btn btn-primary">Enviar</button>
+									<a href="http://localhost:8080/Practica01/Registro" class="btn btn-info" role="button">Registro</a>
+								</div>
+					</form>
+				</div>
+			</section>
+		</header>
 	</body>
 </html>

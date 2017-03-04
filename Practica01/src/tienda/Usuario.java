@@ -1,11 +1,14 @@
 package tienda;
+import java.util.ArrayList;
 
 public class Usuario {
 	//Atributos.
-	String nombre;
+	private String nombre;
 	String apellidos;
 	String email;
 	String clave;
+	ArrayList lista = new ArrayList();
+
 	
 	//Constuctores
 	public Usuario ()
@@ -14,13 +17,15 @@ public class Usuario {
 		this.apellidos="";
 		this.email="";
 		this.clave="";
+		this.lista.add("");
 	}
-	public Usuario (String nombre,String apellidos,String email, String clave)
+	public Usuario (String nombre,String apellidos,String email, String clave, ArrayList lista)
 	{//Constructor con parametros.
 		this.nombre=nombre;
 		this.apellidos=apellidos;
 		this.email=email;
 		this.clave=clave;
+		this.lista=lista;
 	}
 	//Metodos de acceso.
 	public String getNombre() {
@@ -46,6 +51,12 @@ public class Usuario {
 	}
 	public void setClave(String clave) {
 		this.clave = clave;
+	}
+	public ArrayList getLista() {
+		return lista;
+	}
+	public void setLista(ArrayList lista) {
+		this.lista = lista;
 	}
 	
 	
