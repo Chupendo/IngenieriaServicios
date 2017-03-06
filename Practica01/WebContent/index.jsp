@@ -23,7 +23,7 @@
 				
 				<!-- SECCIÓN PARA LA INDENTIFICACIÓN DE USUARIOS -->
 				<div class="col-xs-12 cols-sm-3 col-md-3 col-lg-3" id="identifica">
-					<form method="post" action="http://localhost:8080/Practica01/Web">
+					<form method="post" action="http://localhost:8081/Practica01/Web">
 
 								<div class="input-group">
 									<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>

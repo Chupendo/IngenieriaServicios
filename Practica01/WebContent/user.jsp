@@ -22,7 +22,7 @@
 		
 		<center>
 			<h6> Registro: POST METHOD </h6>	
-			<form action="http://localhost:8080/Practica01/Registro" method=post>
+			<form action="http://localhost:8081/Practica01/Registro" method=post>
 				<div class="input col-xs-4">
 					<div class="input-group">
 						<span class="input-group-addon"><input type="checkbox"></span>

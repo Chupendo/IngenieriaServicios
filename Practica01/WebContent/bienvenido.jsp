@@ -29,6 +29,6 @@
 				<li>Producto:${n.nombre},Concepto:${n.concepto},Precio:${n.importe} Euros</li>
 			</c:forEach>
 		</ul>
-		<a href="http://localhost:8080/Practica01/Productos" class="btn btn-info" role="button">Comprar</a>
+		<a href="http://localhost:8081/Practica01/Productos" class="btn btn-info" role="button">Comprar</a>
 	</body>
 </html>

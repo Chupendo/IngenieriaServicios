@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import tienda.DTO.Producto;
+import tienda.DTO.Usuario;
+
 @WebServlet("/Sumar")
 public class Sumar extends HttpServlet{
 	//Atención a peticiones Get
@@ -33,9 +36,9 @@ public class Sumar extends HttpServlet{
 			//Creamos el producto dado que no tenemos la base de datos.
 			Producto productos[] = new Producto[3];
 			
-			productos[0] = new Producto("Cruzcampo","extra/img/cruzcampo.jpg","Elavorada con cebada especial.",1,1.7);
-			productos[1] = new Producto("Heinekend","extra/img/heinekend.jpg","Bien fria gusta.",2,2);
-			productos[2] = new Producto("Corina","extra/img/coronita.jpg","No veas que rica esta.",3,1.85);
+			productos[0] = new Producto(1,"Cruzcampo",1.7,"Cerveza española.","extra/img/cruzcampo.jpg");
+			productos[1] = new Producto(2,"Heineken",2,"Cerveza neerlandesa.","extra/img/heineken.jpg");
+			productos[2] = new Producto(3,"Corina",1.85,"Cerveza mexicana.","extra/img/coronita.jpg");
 			
 			
 			//Creamos los productos, dado que no utilizamos base de datos.
@@ -43,7 +46,7 @@ public class Sumar extends HttpServlet{
 			if(request.getParameter("opcion")!=null)
 			{
 				int opcion = Integer.parseInt(request.getParameter("opcion"));
-				producto=usu.lista;
+				//TODO producto=usu.lista;
 				for(int i=0; i<productos.length;i++)
 				{
 					if(opcion==productos[i].getId())
@@ -51,7 +54,7 @@ public class Sumar extends HttpServlet{
 						producto.add(productos[i]);
 					}
 				}
-				usu.setLista(producto);
+				//TODO usu.setLista(producto);
 			}
 			else
 			{
