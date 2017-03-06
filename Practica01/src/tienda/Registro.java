@@ -14,52 +14,79 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/Registro")
 public class Registro extends HttpServlet{
-	//Atención a peticiones Get
+
+	/**
+	 * Método que atiende peticiones HTTP con método GET, para registro de usuario
+	 * 
+	 * @param request Petición del cliente
+	 * @param response Respuesta del servidor
+	 * 
+	 * @throws IOException Métodos de lectura y escritura
+	 * @throws ServletException Error en el servlet
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException 
-	{
-		//Variables
-		String url=""; //Para ir cambiando las vista.
-		System.out.println("Entro en servlet registro.");
-		if(request.getParameter("name")==null || request.getParameter("key")==null )
-		{//Se a cargado la web por primera vez.
-			url="/user.jsp"; //Web de inicio de sesion.
-			System.out.println(url);
-		}
-		else
-		{
-			url="/bienvenido.jsp";
-			//Devuelve la sesion, y si no existe, la crea.
+			throws ServletException, IOException{
+		//Constantes.
+		final String [] web = {"/user.jsp","/bienvenido.jsp"};
+		
+		//Varia
+		String url;
+
+		//Si los parámetros de nombre y contraseña son nulos
+		//TODO cambiar try y catch cuando se haya implementado la base de datos
+		if(request.getParameter("name")==null|| request.getParameter("key")==null){
+			
+			//Volvemos a cargar la página de usuario (user.jsp)
+			url = web[0];
+			
+		}else{//Si no hay fallo al introducir un nuevo usuario
+			
+			//Devolvemos la página de bienvenido
+			url=web[1];
+			
+			//Método que obtiene la sesión de la petición, y si no existe, la crea
 			HttpSession session = request.getSession(true);
 			
-			// Se leen los parámetros
+			// Se leen los parámetros de la petición
 			String nombre = request.getParameter("name");
 			String apellidos = request.getParameter("apellidos");
 			String email = request.getParameter("email");
 			String key = request.getParameter("key");
-			Producto carrito = new Producto();
-			ArrayList lista = new ArrayList();//Lista inicial, vacía.
-			// Se crea el objeto usuario
-			Usuario usuario = new Usuario (nombre,apellidos,email,key,lista);
+			
+			//Se crea lista de Productos
+			ArrayList lista = new ArrayList();
+			
+			//Se crea el objeto de la clase Usuario con las variables
+			Usuario usuario = new Usuario (nombre, apellidos, email, key, lista);
 
-			//A continuación guardamos en la sesión el objeto usuraio.		
+			//Guardamos en la sesión el objeto usuario	
 			session.setAttribute ("usuario",usuario);
 			
-			//Guardamos la fecha de creación de la sesión.
+			//Guardamos en la sesion la fecha de creación
 			Date date = new Date();
 			session.setAttribute("date", date);
 			
-			//Determinamos la expiración de la sesión a 60 minunutos
+			//Determinamos la expiración de la sesión a 60 minutos
 			session.setMaxInactiveInterval(30*60);
 			
-			//Añadimos el objeto usuario al jsp.
+			//Enviamos el objeto de la clase Usuario al jsp
 			request.setAttribute("usuario", usuario);
 		}
-		//Mostramos el jsp de bienvenida o la de registro.
+		//Mostramos el jsp de usuario nuevo o la de bienvenido
 		getServletContext().getRequestDispatcher(url).forward(request, response);
 	}
 	
-	//Atenión a peticiones Post
+	
+	/**
+	 * Método que atiende peticiones HTTP de método POST, para registro de usuario
+	 * 
+	 * @param request Petición del cliente
+	 * @param response Respuesta del servidor
+	 * 
+	 * @throws IOException Métodos de lectura y escritura
+	 * @throws ServletException Error en el servlet
+	 * 
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException 
 	{

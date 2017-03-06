@@ -17,41 +17,62 @@ public class Web extends HttpServlet {
 		final String [] web = {"/index.jsp","/user.jsp","/admin.jsp"};
 		final String [] admin = {"Andres","Pablo"};
 		
-		//Atención a peticiones Get
+		/**
+		 * Método que atiende peticiones HTTP con método GET.
+		 * 
+		 * @param request Petición del cliente
+		 * @param response Respuesta del servidor
+		 * 
+		 * @throws IOException Métodos de lectura y escritura
+		 * @throws ServletException Error en el servlet
+		 */
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-				throws ServletException, IOException 
-		{
-			//Variables
-			String url; //Para ir cambiando las vista.
-			System.out.println("ProbandoooO.");
-			//Leemos parametros
+				throws ServletException, IOException {
+			
+			//Variable para ir cambiando las vista
+			String url;
+			
+			//Leemos parámetros del formulario index.jsp
 			String id_user = request.getParameter("name");
 			String id_key = request.getParameter("key");
+			
+			//Imprimimos por consola del servidor el usuario y la contraseña
 			System.out.println("name= "+id_user+" key= "+id_key);
 			
-			if(request.getParameter("name")==null || request.getParameter("key")==null )
-			{//Se a cargado la web por primera vez.
-				url=web[0]; //Web de inicio de sesion.
-				System.out.println(url);
-			}
-			else
-			{
-				if (id_user.equals(admin[0]) && id_key.equals(admin[1]))
-				{//Los datos introducidos coincide con el administrado.
-					url=web[2]; //Web para la identificación.
-					System.out.println(url);
+			//Si los parámetros de nombre y contraseña son nulos
+			if(request.getParameter("name")==null || request.getParameter("key")==null ){
+				
+				//Recargamos la misma página de inicio (index.jsp)
+				url=web[0];
+				
+			}else{
+				//Los datos introducidos coinciden con los del administrador
+				if (id_user.equals(admin[0]) && id_key.equals(admin[1])){
+					
+					//Recargamos la página de administrador (admin.jsp)
+					url=web[2];
+					
+				}else{//Si los datos introducidos no coinciden con el admin
+					
+					//Web para que el usuario se registre (user.jsp)
+					url=web[1];
 				}
-				else
-				{//Los datos introducidos son del usuario.
-					url=web[1]; //Web para que el usuario se registre.
-					System.out.println(url);
-				}
 			}
+			//Respuesta del servlet
 			getServletContext().getRequestDispatcher(url).forward(request, response);	
 
 		}
 		
-		//Atenión a peticiones Post
+		/**
+		 * Método que atiende peticiones HTTP de método POST
+		 * 
+		 * @param request Petición del cliente
+		 * @param response Respuesta del servidor
+		 * 
+		 * @throws IOException Métodos de lectura y escritura
+		 * @throws ServletException Error en el servlet
+		 * 
+		 */
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 				throws ServletException, IOException 
 		{
