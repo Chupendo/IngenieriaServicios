@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/Web")
 public class Web extends HttpServlet {
-	//Constantes.
+		//Constantes.
 		final String [] web = {"/index.jsp","/user.jsp","/admin.jsp"};
 		final String [] admin = {"Andres","Pablo"};
 		
