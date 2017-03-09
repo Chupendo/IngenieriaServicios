@@ -65,6 +65,7 @@
 			<p class="text-center col-xs-12">
 				<button type="submit" class="btn btn-primary">Comprar</button>
 			</p>
+			
 		</form>
 	</body>
 </html>
