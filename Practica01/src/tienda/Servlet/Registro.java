@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import tienda.DTO.Producto;
 import tienda.DTO.Usuario;
 
 /**
@@ -40,6 +41,8 @@ public class Registro extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException{
 		
+		ArrayList<Producto> lista = new ArrayList<>();
+		
 		//Variable para cambiar la vista
 		String url;
 
@@ -66,19 +69,25 @@ public class Registro extends HttpServlet{
 			//Se crea el objeto de la clase Usuario con las variables
 			Usuario usuario = new Usuario (nombre, key, apellidos, email);
 
+			
 			//Guardamos en la sesión el objeto usuario	
 			session.setAttribute ("usuario",usuario);
-			
 			//Guardamos en la sesion la fecha de creación
 			Date date = new Date();
 			session.setAttribute("date", date);
+			//Establecemos la lista de productos a null
+			session.setAttribute("lista", lista);
+			
 			
 			//Determinamos la expiración de la sesión a 60 minutos
 			session.setMaxInactiveInterval(30*60);
-			
+
 			//Enviamos el objeto de la clase Usuario al jsp
 			request.setAttribute("usuario", usuario);
+			//Enviamos la lista de productos al jsp
+			request.setAttribute("lista", lista);
 		}
+		
 		//Mostramos el jsp de usuario nuevo o la de bienvenido
 		getServletContext().getRequestDispatcher(url).forward(request, response);
 	}

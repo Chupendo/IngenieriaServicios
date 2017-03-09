@@ -15,20 +15,19 @@ import tienda.DTO.Producto;
 import tienda.DTO.Usuario;
 
 /**
- * Clase Servlet para aceptar peticiones y enviar al cliente una lista de productos como respuesta,
- * que procesará el jsp. Devolverá:
- * -Página de productos, si tiene sesión el usuario (compra.jsp)
- * -Página de registro, si no existe sesión (user.jsp)
- * 
- * @author Pablo Castillo Segura y Andrés Ruiz Peñuela
- *
- */
-@WebServlet("/Productos")
-public class Productos extends HttpServlet{
-	
+* Clase Servlet para aceptar peticiones y responder al cliente con:
+* -La página del carrito con los productos que lleva (bienvenido.jsp)
+* -La página para registrar a un usuario (user.jsp)
+* 
+* @author Pablo Castillo Segura y Andrés Ruiz Peñuela
+*
+*/
+@WebServlet("/Sumar")
+public class Sumar extends HttpServlet{
+
 	//Variable para cambiar la vista
-	final String [] web ={"/compra.jsp","/user.jsp"};
-	
+	final String [] web ={"/bienvenido.jsp","/user.jsp"};
+		
 	/**
 	 * Método que atiende peticiones HTTP con método GET, para mostrar los productos
 	 *
@@ -40,57 +39,67 @@ public class Productos extends HttpServlet{
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException{
-
-		//Variable para cambiar la vista
+		
+		ArrayList<Producto> lista = new ArrayList<>();
+		
 		String url;
-
+		
 		//Método que obtiene la sesión de la petición, y si no existe da error
 		HttpSession session = request.getSession(false);
 		
 		try{
-			//Extraemos el objeto usuario de la sesión
-			Usuario user = (Usuario) session.getAttribute("usuario");
-			
-			//Mostramos nombre
-			System.out.println(user.getNombre());
+			//Extraemos la lista de objetos de la sesión
+			lista = (ArrayList) session.getAttribute("lista");
 			
 			
 			//Creamos tres productos predefinidos
 			//TODO Base de Datos
+			
 			
 			//Creamos lista de tres productos
 			Producto productos[] = new Producto[3];
 			
 			productos[0] = new Producto(1,"Cruzcampo",1.7,"Cerveza española.","extra/img/cruzcampo.jpg");
 			productos[1] = new Producto(2,"Heineken",2,"Cerveza neerlandesa.","extra/img/heineken.jpg");
-			productos[2] = new Producto(3,"Coronita",1.85,"Cerveza mexicana.","extra/img/coronita.jpg");
+			productos[2] = new Producto(3,"Corina",1.85,"Cerveza mexicana.","extra/img/coronita.jpg");
 			
-			//Creamos arraylist de productos
-			ArrayList lista = new ArrayList();
-			lista.add(productos[0]);
-			lista.add(productos[1]);
-			lista.add(productos[2]);
 			
-			//Enviamos lista al jsp
-			request.setAttribute("lista", lista);
-			
-			//Cambiamos a vista de compra
-			url = web[0];
+			//Si opción (de compra.jsp) es distinto de null
+			if(request.getParameter("opcion")!=null){
+				
+				//Recogemos opción
+				int opcion = Integer.parseInt(request.getParameter("opcion"));
+				
+				for(int i=0; i<productos.length;i++){
+					if(opcion==productos[i].getId()){
+						lista.add(productos[i]);
+					}
+				}
+				
+			}else{ //Si no elige ningún producto
+				System.out.println("No compra");
+			}
 
-		}catch (Exception e){//Si no se ha creado la sesión correctamente
+			//Guardamos en la sesión, de nuevo, la lista	
+			session.setAttribute ("lista",lista);
 			
-			System.out.println("Sesión no creada, volver a registrar.");
+			//Muestro vista de carrito
+			url = web[0];
 			
-			//Cambiamos a vista de registro
+			getServletContext().getRequestDispatcher(url).forward(request, response);
+			
+		}catch (Exception e){//Si no se ha creado la sessión correctamente
+			//Vista de registro
 			url = web[1];
+			
+			System.out.println("Sesion no creada, volver a registrar.");
+			getServletContext().getRequestDispatcher(url).forward(request, response);
 		}
 		
-		//Mostramos el jsp de usuario nuevo o la de bienvenido
-		getServletContext().getRequestDispatcher(url).forward(request, response);
 	}
 	
 	/**
-	 * Método que atiende peticiones HTTP de método POST, para mostrar productos
+	 * Método que atiende peticiones HTTP de método POST, para registro de usuario
 	 * 
 	 * @param request Petición del cliente
 	 * @param response Respuesta del servidor
@@ -100,7 +109,8 @@ public class Productos extends HttpServlet{
 	 * 
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException{
+			throws ServletException, IOException 
+	{
 		doGet(request, response);
 	}
 }

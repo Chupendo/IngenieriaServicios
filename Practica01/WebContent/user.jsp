@@ -1,52 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
+
 <html>
 	<head>
+		<!-- Define la codificación de caracteres a usar-->
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Registro. </title>
+		
+		<title>Registro</title>
+		
+		<!-- Hoja de estilo externa enlazada al documento HTML  -->
 		<link rel="stylesheet" type="text/css" href="extra/estilos.css"/>
+		
 		<!-- CSS de Bootstrap -->
 		<link href="extra/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		
+		<!-- Escala en los móviles -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
+	
 	<body>
 		<header class="container">
 			<section class="row">
 				<div class="col-xs-12 cols-sm-9 col-md-9 col-lg-9" id="nombreWeb">
-					<h1>Carrito.</h1>
+					<h1>Carrito</h1>
 				</div>
 			</section>
 		</header>
 		
-		<center>
-			<h6> Registro: POST METHOD </h6>	
+		<div style="text-align:center">
+		
+			<!-- Formulario de registro -->
 			<form action="http://localhost:8081/Practica01/Registro" method=post>
+			
 				<div class="input col-xs-4">
+				
+					<!-- Nombre -->
 					<div class="input-group">
 						<span class="input-group-addon"><input type="checkbox"></span>
 	      				<input class="form-control" type=text name=name placeholder="Nombre" required/>
-					<br>
 					</div>
+					
+					<!-- Apellidos -->
 					<div class="input-group">
 					    <span class="input-group-addon"><input type="radio"></span>
 	      				<input type="text" class="form-control" name=apellidos  placeholder="Apellidos"required>
-					<br>
 					</div>
+					
+					<!-- Email -->
 					<div class="input-group">
 						<span class="input-group-addon">@</span>
 	  					<input type=email class="form-control" placeholder="aa@aa.a" name=email required />
-	  				<br>
 	  				</div>
+	  				
+	  				<!-- Contraseña -->
 	  				<div class="input-group">
 						<span class="input-group-addon">Pass</span>
 						<input type="password" class="form-control" name=key placeholder="Password" required>
-					<br>
 					</div>
+					
 					<input type=submit value=Send>
 				</div>
 			</form>
-		</center>
+		</div>
 	</body>
 </html>
