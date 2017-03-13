@@ -20,6 +20,7 @@
 	</head>
 	
 	<body>
+		<%! int puerto = 8080; %>
 		<header class="container">
 			<section class="row">
 				<div class="col-xs-12 cols-sm-9 col-md-9 col-lg-9" id="nombreWeb">
@@ -31,7 +32,7 @@
 		<div style="text-align:center">
 		
 			<!-- Formulario de registro -->
-			<form action="http://localhost:8081/Practica01/Registro" method=post>
+			<form action="http://localhost:<%=puerto%>/Practica01/Registro" method=post>
 			
 				<div class="input col-xs-4">
 				

@@ -20,6 +20,7 @@
 	</head>
 	
 	<body>
+		<%! int puerto = 8080; %>
 		<header class="container">
 			<section class="row">
 				<div class="col-xs-12 cols-sm-9 col-md-9 col-lg-9" id="nombreWeb">
@@ -28,7 +29,7 @@
 			</section>
 		</header>
 		
-		<form method="post" action="http://localhost:8081/Practica01/Sumar">
+		<form method="post" action="http://localhost:<%=puerto%>/Practica01/Sumar">
 			<c:forEach items="${lista}" var="n">
 				<div class="col-xs-4">
 			   	<div class="thumbnail">
@@ -55,7 +56,7 @@
 			          	</p>
 				          
 			          	<p>  	
-	          				<input type="radio" name="opcion" value="${n.id}" />Incluir
+	          				<input type="checkbox" name="opcion" value="${n.id}" />Incluir
 			          	</p>
 				      </div>
 				   </div>

@@ -86,6 +86,15 @@ public class Registro extends HttpServlet{
 			request.setAttribute("usuario", usuario);
 			//Enviamos la lista de productos al jsp
 			request.setAttribute("lista", lista);
+			
+			//Cookie del usuario
+			Cookie c = new Cookie("email", email);
+			//Expiración de la cookie
+			c.setMaxAge(60*60*24*365*2); 
+			//Dominio de la cookie
+			c.setPath("/");
+			// Lo devolvemos en la respuesta
+			response.addCookie(c);
 		}
 		
 		//Mostramos el jsp de usuario nuevo o la de bienvenido

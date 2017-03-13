@@ -1,3 +1,8 @@
+<%-- 
+    Document   : index
+    Created on : 09-dic-2007, 20:16:33
+    Author     : jtagua
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -20,6 +25,7 @@
 	</head>
 	
 	<body>
+		<%! int puerto = 8080; %>
 		<header class="container">
 			<section class="row">
 				<div class="col-xs-12 cols-sm-9 col-md-9 col-lg-9" id="nombreWeb">

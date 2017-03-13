@@ -68,12 +68,18 @@ public class Sumar extends HttpServlet{
 			if(request.getParameter("opcion")!=null){
 				
 				//Recogemos opción
-				int opcion = Integer.parseInt(request.getParameter("opcion"));
 				
-				for(int i=0; i<productos.length;i++){
-					if(opcion==productos[i].getId()){
-						lista.add(productos[i]);
+				String [] opcion = request.getParameterValues("opcion");
+				
+				
+				for(int i=0; i<opcion.length;i++){
+					System.out.println(opcion[i]);
+					for(int j=0; j<productos.length;j++){
+						if(Integer.parseInt(opcion[i])==productos[j].getId()){
+							lista.add(productos[j]);
+						}
 					}
+					
 				}
 				
 			}else{ //Si no elige ningún producto

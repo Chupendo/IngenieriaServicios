@@ -63,7 +63,18 @@ public class Web extends HttpServlet {
 				
 				//Recargamos la página de administrador (admin.jsp)
 				url=web[2];
+				Cookie[ ] cookies = request.getCookies( );
+				String cookieName ="email";
+				String cookieValue = "";
+				for (int i=0; i<cookies.length;i++)
+				{
+					System.out.println("name:"+cookies[i].getName());
+					System.out.println("value:"+cookies[i].getValue());
+					
+				}
 				
+				//Enviamos el objeto de la clase Usuario al jsp
+				request.setAttribute("email", cookieValue);
 			}else{//Si los datos introducidos no coinciden con el admin
 				
 				//Web para que el usuario se registre (user.jsp)

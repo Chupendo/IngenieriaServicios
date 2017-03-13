@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 
 <html>
@@ -20,6 +19,7 @@
 	</head>
 	
 	<body>
+		<%! int puerto = 8080; %>
 		<header class="container">
 			<section class="row">
 				<div class="col-xs-12 cols-sm-9 col-md-9 col-lg-9" id="nombreWeb">
@@ -28,7 +28,7 @@
 				
 				<!-- SECCIÓN PARA LA INDENTIFICACIÓN DE USUARIOS -->
 				<div class="col-xs-12 cols-sm-3 col-md-3 col-lg-3" id="identifica">
-					<form method="post" action="http://localhost:8081/Practica01/Web">
+					<form method="post" action="http://localhost:<%=puerto%>/Practica01/Web">
 
 						<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
@@ -47,7 +47,7 @@
 						<!--Botones de acceso.-->
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary">Enviar</button>
-							<a href="http://localhost:8081/Practica01/Registro" class="btn btn-info" role="button">Registro</a>
+							<a href="http://localhost:<%=puerto%>/Practica01/Registro" class="btn btn-info" role="button">Registro</a>
 						</div>
 					</form>
 				</div>

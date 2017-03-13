@@ -21,6 +21,7 @@
 	</head>
 	
 	<body>
+		<%! int puerto = 8080; %>
 		<header class="container">
 			<section class="row">
 				<div class="col-xs-12 cols-sm-9 col-md-9 col-lg-9" id="nombreWeb">
@@ -36,6 +37,6 @@
 				<li>Producto:${n.nombre},Concepto:${n.concepto},Precio:${n.importe} Euros</li>
 			</c:forEach>
 		</ul>
-		<a href="http://localhost:8081/Practica01/Productos" class="btn btn-info" role="button">Comprar</a>
+		<a href="http://localhost:<%=puerto%>/Practica01/Productos" class="btn btn-info" role="button">Comprar</a>
 	</body>
 </html>
