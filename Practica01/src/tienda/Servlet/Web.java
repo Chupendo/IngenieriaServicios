@@ -68,8 +68,8 @@ public class Web extends HttpServlet {
 				String cookieValue = "";
 				for (int i=0; i<cookies.length;i++)
 				{
-					System.out.println("name:"+cookies[i].getName());
-					System.out.println("value:"+cookies[i].getValue());
+					System.out.println(cookies[i].getName()+": ");
+					System.out.println(cookies[i].getValue());
 					
 				}
 				
